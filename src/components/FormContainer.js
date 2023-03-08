@@ -17,8 +17,8 @@ const FormContainer = () => {
     const handleProductSubmit = (event)=>{
       event.preventDefault()
       dispatch(addProduct(productData))
-      setProductData({})
-      event.target.reset()
+      // setProductData({})
+      // event.target.reset()
     }
 
     return (
@@ -50,7 +50,7 @@ const FormContainer = () => {
               {/* <!-- quantity --> */}
               <div className="space-y-2">
                 <label for="lws-inputQuantity">Quantity</label>
-                <input name='quantity' onChange={handleChange} className="addProductInput" type="number" id="lws-inputQuantity" required />
+                <input name='stock' onChange={handleChange} className="addProductInput" type="number" id="lws-inputQuantity" required />
               </div>
             </div>
             {/* <!-- submit button --> */}

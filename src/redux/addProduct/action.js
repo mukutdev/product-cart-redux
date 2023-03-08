@@ -1,4 +1,4 @@
-import { ADD_PRODUCT } from "./actionType"
+import { ADD_PRODUCT , REDUCE_STOCK } from "./actionType"
 
 export const addProduct = (formData)=>{
     return{
@@ -6,3 +6,12 @@ export const addProduct = (formData)=>{
         payload : formData
     }
 }
+
+export const reduceStock = (productId) => {
+    return {
+      type: REDUCE_STOCK,
+      payload: {
+        productId: productId,
+      },
+    };
+  };

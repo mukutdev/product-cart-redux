@@ -16,7 +16,7 @@ const Home = () => {
           {/* <!-- products container --> */}
           <div className="productContainer" id="lws-productContainer">
             {
-              products.length > 0 ? products.map(product => <ProductCard key={product.id} product={product} />) : "No Products"
+              products.length > 0 ? products.map(product => <ProductCard key={product.productId} product={product} />) : "No Products Found"
             }
       
           </div>
