@@ -1,9 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { cartIncrement } from '../redux/CartItems/action';
+import {reduceStock } from "../redux/addProduct/action"
 
 const CartCard = ({cartProduct}) => {
 
+    const dispatch = useDispatch()
     console.log(cartProduct)
-    const {productName , category , price , imgUrl} = cartProduct.product
+    const {productId,productName , category , price , imgUrl} = cartProduct.product
+
+    const handleIncrement = (id)=>{
+      console.log(id)
+      dispatch(cartIncrement(id))
+      dispatch(reduceStock(id))
+    }
+    
     return (
         <div className="cartCard">
         <div className="flex items-center col-span-6 space-x-6">
@@ -19,7 +30,7 @@ const CartCard = ({cartProduct}) => {
         <div className="flex items-center justify-center col-span-4 mt-4 space-x-8 md:mt-0">
           {/* <!-- amount buttons --> */}
           <div className="flex items-center space-x-4">
-            <button className="lws-incrementQuantity">
+            <button onClick={()=> handleIncrement(productId)} className="lws-incrementQuantity">
               <i className="text-lg fa-solid fa-plus"></i>
             </button>
             <span className="lws-cartQuantity">{cartProduct.quantity}</span>
