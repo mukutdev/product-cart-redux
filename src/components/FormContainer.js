@@ -27,11 +27,8 @@ const FormContainer = () => {
 
     const handleProductSubmit = (event)=>{
       event.preventDefault()
-      // console.log(formValues)
       dispatch(addProduct(formValues))
-
-      // setProductData({})
-      // event.target.reset()
+      event.target.reset()
     }
 
     return (
