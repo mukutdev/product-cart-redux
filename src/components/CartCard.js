@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { cartIncrement } from '../redux/CartItems/action';
-import {reduceStock } from "../redux/addProduct/action"
+import { cartIncrement, cartProductRemove } from '../redux/CartItems/action';
+import {reduceStock, updateStock } from "../redux/addProduct/action"
 
 const CartCard = ({cartProduct}) => {
 
@@ -9,21 +9,26 @@ const CartCard = ({cartProduct}) => {
     // console.log(cartProduct)
     const {productId,productName , category , price , imgUrl} = cartProduct.product
 
-    const handleIncrement = (product)=>{
-      console.log(product)
-      if(Number(product.stock > 0)){
-        dispatch(cartIncrement(product.productId , "increment"))
-        dispatch(reduceStock(product.productId , "decrement"))
+    const handleIncrement = (product) => {
+      if (Number(product.stock > 0)) {
+        dispatch(cartIncrement(product.productId, "increment"));
+        dispatch(reduceStock(product.productId, "decrement"));
       }
-
-    }
-    const handleDecrement = (product)=>{
-      // console.log(cartProduct)
-      if(Number(product.stock > 0)){
-        dispatch(cartIncrement(product.productId , "decrement"))
-        dispatch(reduceStock(product.productId , "increment"))
+      
+    };
+    
+    const handleDecrement = (product) => {
+      if (Number(product.stock > 0)) {
+        dispatch(cartIncrement(product.productId, "decrement"));
+        dispatch(reduceStock(product.productId, "increment"));
       }
-    }
+    };
+    
+    const handleProductRemove = (productId) => {
+      dispatch(cartProductRemove(productId));
+      dispatch(updateStock(productId , cartProduct.quantity));
+    };
+    
     
     return (
         <div className="cartCard">
@@ -53,7 +58,7 @@ const CartCard = ({cartProduct}) => {
         </div>
         {/* <!-- delete button --> */}
         <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
-          <button className="lws-removeFromCart">
+          <button onClick={()=>handleProductRemove(productId)} className="lws-removeFromCart">
             <i className="text-lg text-red-400 fa-solid fa-trash"></i>
           </button>
         </div>

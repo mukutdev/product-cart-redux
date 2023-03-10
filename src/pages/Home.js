@@ -7,7 +7,7 @@ const Home = () => {
 
   const products = useSelector(state => state.products)
   
-  console.log(products)
+  // console.log(products)
 
   return (
     <>

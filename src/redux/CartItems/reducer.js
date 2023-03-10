@@ -1,8 +1,9 @@
-import { ADD_TO_CART, CART_INCREMENT } from "./actionType";
+import { ADD_TO_CART, CART_INCREMENT, PRODUCT_REMOVE } from "./actionType";
 import initialState from "./initialState";
 
+
 const addToCartReducer = (state = initialState, action) => {
-  console.log(initialState);
+  // console.log(initialState);
   switch (action.type) {
     case ADD_TO_CART:
       const { product } = action.payload;
@@ -32,6 +33,8 @@ const addToCartReducer = (state = initialState, action) => {
             const { stock } = newState[findProduct].product;
             if (newState[findProduct].quantity < stock) {
               newState[findProduct].quantity += 1;
+            }else{
+              alert('Sorry, product out of stock or not enough available quantity. Please adjust your selection.')
             }
             return newState;
           } else {
@@ -56,6 +59,9 @@ const addToCartReducer = (state = initialState, action) => {
         default:
           return state;
       }
+
+      case PRODUCT_REMOVE :
+        return state.filter(item => item.product.productId !== action.payload)
 
     default:
       return state;
