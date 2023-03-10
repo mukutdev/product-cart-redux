@@ -18,10 +18,17 @@ const addProductReducer = (state = initialState , action)=>{
             ]
         case REDUCE_STOCK :
         
-        const {productId} = action.payload
-        
-        return state.map(item => item.productId === productId ? {...item , stock : Number(item.stock -1)} : item)
-                
+        const {productId , changeType} = action.payload
+        console.log(action.payload)
+            switch (changeType) {
+                case "increment":
+                    return state.map(item => item.productId === productId ? {...item , stock : Number(item.stock + 1)} : item)
+                case "decrement" :
+                    return state.map(item => item.productId === productId ? {...item , stock : Number(item.stock -1) > 0 ? Number(item.stock -1) : 0} : item)
+    
+                default:
+                    return state;
+            }                
 
         default:
             return state;

@@ -12,7 +12,7 @@ const ProductCard = ({product}) => {
     const handleAddToCart = (pro)=>{
       if(Number(pro.stock) > 0){
           dispatch(addedToCart(pro))
-          dispatch(reduceStock(pro.productId))
+          dispatch(reduceStock(pro.productId, "decrement"))
       }
     }
 

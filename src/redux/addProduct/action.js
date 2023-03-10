@@ -7,11 +7,20 @@ export const addProduct = (formData)=>{
     }
 }
 
-export const reduceStock = (productId) => {
+export const reduceStock = (productId , changeType) => {
     return {
       type: REDUCE_STOCK,
       payload: {
         productId: productId,
+        changeType : changeType,
       },
     };
   };
+// export const reduceStock = (productId) => {
+//     return {
+//       type: REDUCE_STOCK,
+//       payload: {
+//         productId: productId,
+//       },
+//     };
+//   };

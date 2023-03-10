@@ -6,17 +6,30 @@ const FormContainer = () => {
 
     const dispatch = useDispatch()
 
-    const [productData , setProductData] = useState({})
+    const [formValues, setFormValues] = useState({
+      productName: '',
+      category: '',
+      imgUrl: '',
+      price: 0,
+      stock: 0,
+    });
+    
 
-    const handleChange = (event)=>{
-      const {name , value} = event.target
-      setProductData({...productData, [name]: value})
-      
+    // const [productData , setProductData] = useState({})
+    const handleChange = (fieldName , e)=>{
+      if(fieldName === 'price' || fieldName === 'stock'){
+          setFormValues({...formValues , [fieldName]: Number(e.target.value)})
+      }
+      else{
+        setFormValues({...formValues , [fieldName] : e.target.value})
+      }
     }
 
     const handleProductSubmit = (event)=>{
       event.preventDefault()
-      dispatch(addProduct(productData))
+      console.log(formValues)
+      dispatch(addProduct(formValues))
+
       // setProductData({})
       // event.target.reset()
     }
@@ -28,29 +41,29 @@ const FormContainer = () => {
             {/* <!-- product name --> */}
             <div className="space-y-2">
               <label for="lws-inputName">Product Name</label>
-              <input name='productName' onChange={handleChange} className="addProductInput" id="lws-inputName" type="text" required />
+              <input onChange={(event)=> handleChange('productName' , event)} className="addProductInput" id="lws-inputName" type="text" required />
             </div>
             {/* <!-- product category --> */}
             <div className="space-y-2">
               <label for="lws-inputCategory">Category</label>
-              <input name='category' onChange={handleChange} className="addProductInput" id="lws-inputCategory" type="text" required />
+              <input onChange={(event)=> handleChange('category' , event)} className="addProductInput" id="lws-inputCategory" type="text" required />
             </div>
             {/* <!-- product image url --> */}
             <div className="space-y-2">
               <label for="lws-inputImage">Image Url</label>
-              <input name='imgUrl' onChange={handleChange} className="addProductInput" id="lws-inputImage" type="text" required />
+              <input onChange={(event)=> handleChange('imgUrl' , event)} className="addProductInput" id="lws-inputImage" type="text" required />
             </div>
             {/* <!-- price & quantity container --> */}
             <div className="grid grid-cols-2 gap-8 pb-4">
               {/* <!-- price --> */}
               <div className="space-y-2">
                 <label for="ws-inputPrice">Price</label>
-                <input name='price' onChange={handleChange} className="addProductInput" type="number" id="lws-inputPrice" required />
+                <input onChange={(event)=> handleChange('price' , event)} className="addProductInput" type="number" id="lws-inputPrice" required />
               </div>
               {/* <!-- quantity --> */}
               <div className="space-y-2">
                 <label for="lws-inputQuantity">Quantity</label>
-                <input name='stock' onChange={handleChange} className="addProductInput" type="number" id="lws-inputQuantity" required />
+                <input onChange={(event)=> handleChange('stock' , event)} className="addProductInput" type="number" id="lws-inputQuantity" required />
               </div>
             </div>
             {/* <!-- submit button --> */}

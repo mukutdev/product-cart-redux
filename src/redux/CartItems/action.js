@@ -7,10 +7,17 @@ export const addedToCart = (product) => {
     };
   };
 
-  export const cartIncrement = (id)=>{
+  export const cartIncrement = (id , changeType)=>{
     return{
       type : CART_INCREMENT,
-      payload : id
+      payload : {id , changeType}
     }
   }
+  
+  // export const cartIncrement = (id , type)=>{
+  //   return{
+  //     type : CART_INCREMENT,
+  //     payload : id
+  //   }
+  // }
   

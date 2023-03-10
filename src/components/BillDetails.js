@@ -4,7 +4,7 @@ const BillDetails = ({totalBill}) => {
 
     const totalBillAmount = totalBill.reduce((accumulator , product) => accumulator + parseInt(product.quantity) * 
     parseInt(product.product.price) , 0) 
-    console.log('total bill' , totalBillAmount)
+    // console.log('total bill' , totalBillAmount)
 
     return (
         <div className="billDetailsCard">
